@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #f5f5f5;
-  --muted: #a1a1aa;
-  --border: rgba(255, 255, 255, 0.1);
+  --background: #05070d;
+  --foreground: #f5f7ff;
+  --muted: #8b93a7;
+  --border: rgba(255, 255, 255, 0.09);
+  --blue: #60a5fa;
+  --blue-strong: #3b82f6;
 }
 
 * {
@@ -13,36 +15,214 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
   margin: 0;
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(59, 130, 246, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 30%,
+      rgba(37, 99, 235, 0.06),
+      transparent 28%
+    ),
+    #05070d;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
+/* ─────────────────────────────────────────
+   SELECCIÓN
+───────────────────────────────────────── */
+
 ::selection {
-  background: white;
-  color: black;
+  background: rgba(96, 165, 250, 0.35);
+  color: white;
 }
+
+/* ─────────────────────────────────────────
+   LINKS
+───────────────────────────────────────── */
 
 a {
   color: inherit;
   text-decoration: none;
 }
+
+/* ─────────────────────────────────────────
+   FONDO AMBIENTAL
+───────────────────────────────────────── */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -3;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(59, 130, 246, 0.1),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(37, 99, 235, 0.08),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(96, 165, 250, 0.06),
+      transparent 28%
+    );
+
+  filter: blur(70px);
+  animation: ambient-movement 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 75%
+  );
+
+  opacity: 0.35;
+}
+
+/* ─────────────────────────────────────────
+   MOVIMIENTO DEL FONDO
+───────────────────────────────────────── */
+
+@keyframes ambient-movement {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(3%, 2%, 0) scale(1.05);
+  }
+
+  100% {
+    transform: translate3d(-1%, 4%, 0) scale(1.02);
+  }
+}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+
 .hero-content {
-  animation: hero-enter 0.8s ease-out both;
+  animation: hero-enter 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes hero-enter {
   from {
     opacity: 0;
-    transform: translateY(35px);
+    transform: translateY(45px);
+    filter: blur(8px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ─────────────────────────────────────────
+   DESTELLO AZUL
+───────────────────────────────────────── */
+
+.blue-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  filter: blur(100px);
+  pointer-events: none;
+  animation: blue-glow-movement 12s ease-in-out infinite alternate;
+}
+
+@keyframes blue-glow-movement {
+  0% {
+    transform: translate(-10%, -5%) scale(0.9);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translate(10%, 8%) scale(1.05);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-5%, 15%) scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.25);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.45);
+}
+
+/* ─────────────────────────────────────────
+   REDUCCIÓN DE MOVIMIENTO
+───────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

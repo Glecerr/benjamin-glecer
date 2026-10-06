@@ -1,48 +1,87 @@
+"use client";
+
 import {
   BrainCircuit,
   Code2,
   Database,
-  Globe2,
   Layers3,
+  Sparkles,
   Wrench,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const skillGroups = [
   {
     title: "Frontend",
-    description: "Interfaces modernas, responsive y centradas en la experiencia.",
-    icon: Globe2,
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
+    description: "Interfaces web modernas, responsive y orientadas a la experiencia de usuario.",
+    icon: Code2,
+    skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+    ],
   },
   {
     title: "Backend",
-    description: "Lógica, APIs y estructuras para aplicaciones escalables.",
-    icon: Code2,
-    skills: ["Node.js", "Express", "APIs REST", "JavaScript", "TypeScript"],
+    description: "Lógica de aplicaciones, APIs, autenticación e integración de servicios.",
+    icon: Layers3,
+    skills: [
+      "Node.js",
+      "APIs",
+      "Supabase",
+      "Autenticación",
+      "Integración de servicios",
+    ],
   },
   {
     title: "Datos",
-    description: "Trabajo con información, persistencia y estructuras de datos.",
+    description: "Bases de datos, organización y gestión de información.",
     icon: Database,
-    skills: ["SQL", "Bases de datos", "Modelado", "Consultas"],
+    skills: [
+      "SQL",
+      "Bases de datos",
+      "Supabase",
+      "Modelado de datos",
+      "Gestión de información",
+    ],
   },
   {
-    title: "IA",
-    description: "Exploración y desarrollo de soluciones utilizando inteligencia artificial.",
+    title: "IA & Python",
+    description: "Formación y proyectos orientados a inteligencia artificial y programación.",
     icon: BrainCircuit,
-    skills: ["IA generativa", "APIs de IA", "Integración de modelos", "Automatización"],
+    skills: [
+      "Python",
+      "Inteligencia artificial",
+      "IA generativa",
+      "Llama",
+    ],
   },
   {
     title: "UI & Motion",
-    description: "Diseño visual, interacción y movimiento para productos digitales.",
-    icon: Layers3,
-    skills: ["Framer Motion", "GSAP", "Lucide", "Responsive Design"],
+    description: "Interacciones, animaciones y detalles visuales para mejorar la experiencia.",
+    icon: Sparkles,
+    skills: [
+      "Framer Motion",
+      "GSAP",
+      "Responsive Design",
+      "UI",
+      "Microinteracciones",
+    ],
   },
   {
     title: "Herramientas",
-    description: "Herramientas utilizadas para desarrollar, probar y desplegar proyectos.",
+    description: "Herramientas que utilizo para desarrollar, versionar y publicar proyectos.",
     icon: Wrench,
-    skills: ["Git", "GitHub", "Vercel", "VS Code", "npm", "PowerShell"],
+    skills: [
+      "Git",
+      "GitHub",
+      "Vercel",
+      "VS Code",
+    ],
   },
 ];
 
@@ -50,67 +89,87 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="scroll-mt-24 border-t border-white/10 py-24 md:py-32"
+      className="scroll-mt-24 py-28 md:py-40"
     >
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-16 max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-[0.35em] text-lime-400">
-            02 · Skills
+        <div className="max-w-3xl">
+          <p className="text-xs font-medium uppercase tracking-[0.35em] text-blue-400">
+            03 · Skills
           </p>
 
           <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] md:text-6xl">
-            Las herramientas
+            Desarrollo,
             <br />
-            <span className="text-zinc-500">con las que construyo.</span>
+            <span className="text-zinc-500">
+              datos y tecnología.
+            </span>
           </h2>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-500">
-            Un stack que sigo ampliando constantemente mientras desarrollo
-            proyectos reales y profundizo mis conocimientos.
+          <p className="mt-7 max-w-2xl text-base leading-8 text-zinc-500 md:text-lg">
+            Tecnologías y herramientas que fui incorporando a través de mi
+            formación y de los proyectos que desarrollé.
           </p>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group) => {
+        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {skillGroups.map((group, index) => {
             const Icon = group.icon;
 
             return (
-              <article
+              <motion.article
                 key={group.title}
-                className="group bg-black p-8 transition duration-300 hover:bg-white/[0.025] md:p-9"
+                initial={{
+                  opacity: 0,
+                  y: 35,
+                  filter: "blur(8px)",
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.15,
+                }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                whileHover={{ y: -5 }}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors duration-300 hover:border-blue-400/20 hover:bg-blue-400/[0.03]"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] transition group-hover:border-lime-400/30 group-hover:bg-lime-400/[0.05]">
-                    <Icon
-                      size={19}
-                      className="text-zinc-500 transition group-hover:text-lime-400"
-                    />
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-medium text-zinc-200">
+                      {group.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                      {group.description}
+                    </p>
                   </div>
 
-                  <span className="text-xs text-zinc-700">
-                    {String(skillGroups.indexOf(group) + 1).padStart(2, "0")}
-                  </span>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02]">
+                    <Icon
+                      size={18}
+                      className="text-blue-400"
+                    />
+                  </div>
                 </div>
 
-                <h3 className="mt-8 text-2xl font-medium tracking-[-0.03em]">
-                  {group.title}
-                </h3>
-
-                <p className="mt-3 min-h-[56px] text-sm leading-relaxed text-zinc-600">
-                  {group.description}
-                </p>
-
-                <div className="mt-7 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-zinc-500 transition hover:border-lime-400/20 hover:text-zinc-300"
+                      className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-zinc-500"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-              </article>
+              </motion.article>
             );
           })}
         </div>

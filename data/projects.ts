@@ -7,15 +7,12 @@ export type Project = {
   category: string;
   technologies: string[];
   image: string;
-  demo?: string;
+  demo: string;
   github?: string;
-  featured?: boolean;
+  featured: boolean;
   year: string;
   role: string;
   features: string[];
-  context: string;
-  approach: string;
-  highlights: string[];
 };
 
 export const projects: Project[] = [
@@ -24,10 +21,10 @@ export const projects: Project[] = [
     slug: "decoandi",
     title: "DecoAndi",
     description:
-      "E-commerce de productos personalizados y decorativos, pensado para ofrecer una experiencia de compra moderna, clara y simple.",
+      "Sitio web para un emprendimiento de productos personalizados, pensado para mostrar el catálogo y facilitar el contacto con cada cliente.",
     longDescription:
-      "DecoAndi es un proyecto de e-commerce desarrollado para llevar una propuesta de productos personalizados al entorno digital. La idea fue construir una experiencia de compra cuidada, responsive y preparada para evolucionar junto con el negocio.",
-    category: "E-commerce",
+      "Desarrollé una página para DecoAndi donde el emprendimiento puede mostrar sus productos de una forma más ordenada y atractiva. El catálogo está organizado mediante tarjetas con nombre, descripción e información del producto, además de un slider para destacar contenido. Cada producto tiene un acceso directo a WhatsApp con un mensaje preparado para iniciar la consulta con el vendedor. También integré los accesos a las redes sociales del emprendimiento y trabajé la experiencia para que funcione correctamente desde distintos dispositivos.",
+    category: "E-commerce / Catálogo",
     technologies: [
       "Next.js",
       "React",
@@ -38,30 +35,20 @@ export const projects: Project[] = [
       "GSAP",
       "Lucide React",
     ],
-    image: "/projects/logo decoandi.jpg",
+    image: "/projects/logo%20decoandi.jpg",
     demo: "https://decoandi.vercel.app",
     featured: true,
     year: "2026",
-    role: "Full Stack Developer",
-    context:
-      "DecoAndi parte de una necesidad concreta: convertir una propuesta de productos personalizados en una experiencia digital clara, visual y preparada para vender.",
-    approach:
-      "La aplicación está pensada alrededor del recorrido del usuario, desde la exploración del catálogo hasta el carrito, utilizando una estructura modular que permite seguir incorporando funcionalidades.",
-    highlights: [
-      "Experiencia de e-commerce completa",
-      "Catálogo organizado",
-      "Carrito de compras",
-      "Arquitectura basada en componentes",
-      "Animaciones e interacciones",
-      "Diseño responsive",
-    ],
+    role: "Desarrollo Full Stack",
     features: [
       "Catálogo de productos",
-      "Carrito de compras",
-      "Experiencia responsive",
-      "Componentes reutilizables",
+      "Tarjetas con información de cada producto",
+      "Slider de contenido",
+      "Contacto directo por WhatsApp",
+      "Mensajes de WhatsApp predefinidos",
+      "Integración con redes sociales",
+      "Diseño responsive",
       "Animaciones e interacciones",
-      "Arquitectura preparada para escalar",
     ],
   },
 
@@ -70,39 +57,35 @@ export const projects: Project[] = [
     slug: "trip-music",
     title: "Trip Music",
     description:
-      "Aplicación web musical enfocada en descubrir música y construir una experiencia interactiva alrededor del contenido.",
+      "Aplicación web para publicar y administrar noticias, eventos y contenido multimedia relacionado con la cobertura de Trip Music.",
     longDescription:
-      "Trip Music es un proyecto experimental centrado en la música y la exploración de contenido. El objetivo es combinar una interfaz atractiva con una experiencia interactiva que pueda seguir creciendo con nuevas funcionalidades.",
-    category: "Web App",
+      "Desarrollé Trip Music pensando en una necesidad concreta: que el contenido de la página pueda gestionarse sin tener que modificar el código cada vez que aparece una nueva noticia o evento. La aplicación cuenta con una parte pública donde se muestran las publicaciones y un panel de administración desde el que se pueden crear y gestionar contenidos. Para la autenticación, base de datos y almacenamiento de archivos utilicé Supabase.",
+    category: "Aplicación web",
     technologies: [
       "Next.js",
       "React",
       "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Supabase Auth",
+      "Supabase Storage",
     ],
-    image: "/projects/logo trip.jpg",
+    image: "/projects/logo%20trip.jpg",
     demo: "https://trip-musica.vercel.app",
     featured: true,
     year: "2026",
-    role: "Full Stack Developer",
-    context:
-      "Trip Music nace de la idea de construir una experiencia web alrededor de la música, poniendo el foco en la interacción y la exploración.",
-    approach:
-      "El proyecto se plantea como una base sobre la que se puedan sumar nuevas experiencias musicales sin perder una interfaz simple y fácil de recorrer.",
-    highlights: [
-      "Experiencia centrada en música",
-      "Interfaz interactiva",
-      "Exploración de contenido",
-      "Componentización",
-      "Diseño responsive",
-      "Arquitectura preparada para crecer",
-    ],
+    role: "Desarrollo Full Stack",
     features: [
-      "Interfaz musical interactiva",
-      "Exploración de contenido",
+      "Sitio público de noticias",
+      "Panel de administración",
+      "Inicio de sesión para administradores",
+      "Creación y gestión de noticias",
+      "Gestión de eventos",
+      "Contenido multimedia",
+      "Base de datos con Supabase",
+      "Autenticación con Supabase",
+      "Almacenamiento de archivos",
       "Diseño responsive",
-      "Componentización",
-      "Experiencia orientada al usuario",
-      "Arquitectura escalable",
     ],
   },
 
@@ -111,39 +94,29 @@ export const projects: Project[] = [
     slug: "maldito-cafe",
     title: "Maldito Café",
     description:
-      "Menú digital moderno diseñado para presentar productos de forma clara y adaptada principalmente a dispositivos móviles.",
+      "Sitio web para un café, pensado como una presencia digital simple, clara y adaptada a dispositivos móviles.",
     longDescription:
-      "Maldito Café es un proyecto orientado a resolver una necesidad concreta: transformar una carta tradicional en una experiencia digital rápida, clara y accesible desde cualquier dispositivo.",
-    category: "Web App",
+      "Desarrollé Maldito Café como un sitio de presentación para el negocio, buscando que la información importante sea fácil de encontrar y que la experiencia funcione bien especialmente desde el celular. Trabajé la estructura del sitio, la presentación de los productos, la navegación y los componentes reutilizables para conseguir una página simple y responsive.",
+    category: "Sitio web",
     technologies: [
       "Next.js",
       "React",
       "TypeScript",
+      "Tailwind CSS",
     ],
-    image: "/projects/logo maldito.jpg",
+    image: "/projects/logo%20maldito.jpg",
     demo: "https://malditocafe.vercel.app",
     featured: true,
     year: "2026",
-    role: "Full Stack Developer",
-    context:
-      "El objetivo es que una persona pueda entrar desde el celular, entender rápidamente la propuesta del café y encontrar los productos sin fricción.",
-    approach:
-      "La interfaz prioriza velocidad de navegación, legibilidad y una estructura pensada principalmente para pantallas móviles.",
-    highlights: [
-      "Experiencia mobile-first",
-      "Acceso rápido al menú",
-      "Presentación clara de productos",
-      "Navegación simple",
-      "Diseño responsive",
-      "Interfaz enfocada en una necesidad concreta",
-    ],
+    role: "Desarrollo Frontend",
     features: [
-      "Menú digital",
-      "Diseño mobile-first",
-      "Navegación simple",
+      "Página de presentación",
       "Presentación de productos",
-      "Interfaz responsive",
-      "Experiencia optimizada para móvil",
+      "Navegación simple",
+      "Componentes reutilizables",
+      "Diseño mobile-first",
+      "Diseño responsive",
+      "Interacciones de interfaz",
     ],
   },
 ];

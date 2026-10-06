@@ -1,94 +1,151 @@
-import { ArrowUpRight, GraduationCap } from "lucide-react";
+"use client";
 
-const formation = [
+import { motion } from "framer-motion";
+
+const education = [
   {
-    period: "2026 — Actualidad",
-    title: "Ingeniería en Sistemas",
-    place: "Universidad Tecnológica Nacional",
+    year: "2026 — Actualidad",
+    title: "Licenciatura en Ciencia de Datos",
+    place: "Universidad de Buenos Aires · CBC",
     description:
-      "Formación universitaria orientada al desarrollo de software, programación, sistemas y resolución de problemas tecnológicos.",
+      "Formación orientada al análisis de datos, programación, matemática, estadística e inteligencia artificial.",
   },
   {
-    period: "2025",
-    title: "Educación Secundaria",
-    place: "Buenos Aires, Argentina",
+    year: "2020 — 2025",
+    title: "Bachillerato Físico-Matemático",
+    place: "Escuela Normal Superior N.º 4 “Estanislao Severo Zeballos”",
     description:
-      "Finalización de estudios secundarios y comienzo de una nueva etapa enfocada en tecnología y desarrollo de software.",
+      "Finalización de la educación secundaria y comienzo de una etapa enfocada en la tecnología y el desarrollo en la Universidad de Buenos Aires.",
   },
+];
+
+const courses = [
+  "Desarrollo Web Full Stack · Aprende Programando",
+  "Desarrollo Web · Nivel 1",
+  "Desarrollo Web · Nivel 2",
+  "Desarrollo Web · Nivel 3",
+  "Desarrollo Web · Nivel 4",
+  "Inteligencia Artificial · Aprende Programando",
+  "Python",
+  "Modelado 3D con Blender",
+  "Desarrollo de videojuegos con Unity",
+  "Soporte e instalación de sistemas · CFP",
+  "Seguridad informática",
+  "Redes",
+  "Hardware",
 ];
 
 export default function Experience() {
   return (
     <section
       id="formacion"
-      className="scroll-mt-24 border-t border-white/10 py-24 md:py-32"
+      className="scroll-mt-24 py-28 md:py-40"
     >
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-16 md:grid-cols-[1fr_2fr]">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.35em] text-lime-400">
-              03 · Formación
-            </p>
+        <div className="max-w-3xl">
+          <p className="text-xs font-medium uppercase tracking-[0.35em] text-blue-400">
+            04 · Formación
+          </p>
 
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] md:text-6xl">
-              Aprender,
-              <br />
-              <span className="text-zinc-500">construir y mejorar.</span>
-            </h2>
+          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] md:text-6xl">
+            Mi aprendizaje,
+            <br />
+            <span className="text-zinc-500">
+              siempre en movimiento.
+            </span>
+          </h2>
 
-            <p className="mt-6 max-w-sm leading-relaxed text-zinc-600">
-              Mi formación combina estudios universitarios con aprendizaje
-              práctico a través de proyectos propios.
-            </p>
-          </div>
+          <p className="mt-7 max-w-2xl text-base leading-8 text-zinc-500 md:text-lg">
+            Mi formación combina la carrera que estoy cursando con cursos y
+            proyectos que fui haciendo por mi cuenta para seguir desarrollando
+            habilidades prácticas.
+          </p>
+        </div>
 
-          <div className="divide-y divide-white/10 border-y border-white/10">
-            {formation.map((item) => (
-              <article
-                key={item.title}
-                className="group py-9 first:pt-8 last:pb-8"
+        <div className="mt-16 grid gap-4">
+          {education.map((item, index) => (
+            <motion.article
+              key={item.title}
+              initial={{
+                opacity: 0,
+                y: 35,
+                filter: "blur(8px)",
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+              }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.75,
+                delay: index * 0.08,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -4 }}
+              className="grid gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors duration-300 hover:border-blue-400/20 hover:bg-blue-400/[0.025] md:grid-cols-[180px_1fr] md:p-8"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-blue-400">
+                {item.year}
+              </p>
+
+              <div>
+                <h3 className="text-xl font-medium text-zinc-200">
+                  {item.title}
+                </h3>
+
+                <p className="mt-1 text-sm text-zinc-500">
+                  {item.place}
+                </p>
+
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-600">
+                  {item.description}
+                </p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30,
+            filter: "blur(8px)",
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+          }}
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.1,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="mt-14"
+        >
+          <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
+            Cursos y formación complementaria
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {courses.map((course) => (
+              <span
+                key={course}
+                className="rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-zinc-500 transition-colors hover:border-blue-400/20 hover:text-zinc-300"
               >
-                <div className="grid gap-6 md:grid-cols-[140px_1fr]">
-                  <span className="text-xs uppercase tracking-[0.2em] text-zinc-600">
-                    {item.period}
-                  </span>
-
-                  <div>
-                    <div className="flex items-start justify-between gap-5">
-                      <div className="flex items-start gap-4">
-                        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02] transition group-hover:border-lime-400/30">
-                          <GraduationCap
-                            size={18}
-                            className="text-zinc-600 transition group-hover:text-lime-400"
-                          />
-                        </div>
-
-                        <div>
-                          <h3 className="text-2xl font-medium tracking-[-0.03em]">
-                            {item.title}
-                          </h3>
-
-                          <p className="mt-1 text-sm text-zinc-500">
-                            {item.place}
-                          </p>
-                        </div>
-                      </div>
-
-                      <ArrowUpRight
-                        size={17}
-                        className="shrink-0 text-zinc-700 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-lime-400"
-                      />
-                    </div>
-
-                    <p className="mt-6 max-w-2xl leading-relaxed text-zinc-500">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </article>
+                {course}
+              </span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

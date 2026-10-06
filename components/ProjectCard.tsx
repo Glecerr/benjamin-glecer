@@ -1,112 +1,116 @@
 ﻿"use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
-type Props = {
+type ProjectCardProps = {
   project: Project;
+  index?: number;
 };
 
-export default function ProjectCard({ project }: Props) {
-  const projectUrl = "/proyectos/" + project.slug;
-
+export default function ProjectCard({
+  project,
+  index = 0,
+}: ProjectCardProps) {
   return (
     <motion.article
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] transition-colors duration-300 hover:border-lime-400/20"
+      initial={{
+        opacity: 0,
+        y: 50,
+        filter: "blur(10px)",
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+      }}
+      viewport={{
+        once: true,
+        amount: 0.12,
+      }}
+      transition={{
+        duration: 0.9,
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="group"
     >
-      <Link href={projectUrl} className="block">
-        <div className="relative aspect-[16/9] overflow-hidden bg-zinc-950">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(163,230,53,0.08),transparent_60%)]" />
-
-          <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12">
+      <div className="overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.02] transition duration-500 group-hover:border-blue-400/20 group-hover:bg-white/[0.035]">
+        <Link
+          href={`/proyectos/${project.slug}`}
+          className="block"
+        >
+          <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-zinc-950 px-8 py-12 md:min-h-[440px] md:px-16 md:py-16">
             <Image
               src={project.image}
-              alt={"Logo de " + project.title}
+              alt={`Logo de ${project.title}`}
               width={1200}
               height={700}
-              quality={100}
-              className="h-auto max-h-full w-auto max-w-[90%] object-contain transition duration-700 ease-out group-hover:scale-105"
+              className="h-auto max-h-[300px] w-full max-w-[1000px] object-contain transition duration-700 ease-out group-hover:scale-[1.025] md:max-h-[390px]"
+              sizes="(max-width: 768px) calc(100vw - 64px), 1000px"
+              priority={index === 0}
             />
+
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+
+            <div className="pointer-events-none absolute inset-0 bg-blue-500/[0.03] opacity-0 transition duration-500 group-hover:opacity-100" />
+
+            <div className="pointer-events-none absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4 md:bottom-7 md:left-7 md:right-7">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.25em] text-blue-300">
+                  {project.category}
+                </p>
+
+                <h3 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-white md:text-5xl">
+                  {project.title}
+                </h3>
+              </div>
+
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/30 text-white backdrop-blur-md transition duration-300 group-hover:border-blue-400/40 group-hover:bg-blue-500">
+                <ArrowUpRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </div>
+            </div>
           </div>
-
-          <div className="absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/10" />
-
-          <div className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white opacity-0 backdrop-blur-md transition duration-300 group-hover:opacity-100">
-            <ArrowUpRight size={18} />
-          </div>
-
-          <div className="absolute bottom-5 left-5 rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-xs text-zinc-400 backdrop-blur-md">
-            {project.category}
-          </div>
-        </div>
-      </Link>
-
-      <div className="p-7 md:p-8">
-        <div className="mb-5 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="text-xs uppercase tracking-[0.25em] text-zinc-500">
-              {project.category}
-            </span>
-
-            <span className="h-1 w-1 rounded-full bg-zinc-700" />
-
-            <span className="text-xs text-zinc-700">
-              {project.year}
-            </span>
-          </div>
-
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={"Abrir " + project.title + " online"}
-              onClick={(event) => event.stopPropagation()}
-              className="flex items-center gap-1.5 text-xs text-zinc-600 transition hover:text-lime-400"
-            >
-              Live
-              <ExternalLink size={13} />
-            </a>
-          )}
-        </div>
-
-        <Link href={projectUrl}>
-          <h3 className="text-2xl font-medium tracking-[-0.03em] transition group-hover:text-lime-300 md:text-3xl">
-            {project.title}
-          </h3>
         </Link>
 
-        <p className="mt-3 max-w-2xl leading-relaxed text-zinc-500">
-          {project.description}
-        </p>
+        <div className="grid gap-8 p-6 md:grid-cols-[1fr_auto] md:p-8">
+          <div>
+            <p className="max-w-3xl text-sm leading-7 text-zinc-500 md:text-base">
+              {project.description}
+            </p>
 
-        <div className="mt-7 flex flex-wrap gap-2">
-          {project.technologies.map((technology) => (
-            <span
-              key={technology}
-              className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-zinc-500 transition hover:border-lime-400/20 hover:text-zinc-300"
+            <div className="mt-5 flex flex-wrap gap-2">
+              {project.technologies.slice(0, 6).map((technology) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-xs text-zinc-500"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-start md:justify-end">
+            <Link
+              href={`/proyectos/${project.slug}`}
+              className="group/link inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm text-zinc-400 transition hover:border-blue-400/30 hover:bg-blue-400/[0.05] hover:text-white"
             >
-              {technology}
-            </span>
-          ))}
+              Ver proyecto
+
+              <ArrowUpRight
+                size={15}
+                className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+              />
+            </Link>
+          </div>
         </div>
-
-        <Link
-          href={projectUrl}
-          className="group/link mt-8 inline-flex items-center gap-2 text-sm text-zinc-500 transition hover:text-lime-400"
-        >
-          Ver caso completo
-
-          <ArrowUpRight
-            size={15}
-            className="transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1"
-          />
-        </Link>
       </div>
     </motion.article>
   );
