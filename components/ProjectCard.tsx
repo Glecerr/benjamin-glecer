@@ -43,16 +43,16 @@ export default function ProjectCard({
           href={`/proyectos/${project.slug}`}
           className="block"
         >
-          <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-zinc-950 px-8 py-12 md:min-h-[440px] md:px-16 md:py-16">
-            <Image
-              src={project.image}
-              alt={`Logo de ${project.title}`}
-              width={project.imageWidth}
-              height={project.imageHeight}
-              className="h-auto max-h-[300px] w-full max-w-[1000px] object-contain transition duration-700 ease-out group-hover:scale-[1.025] md:max-h-[390px]"
-              sizes="(max-width: 768px) calc(100vw - 64px), 1000px"
-              priority={index === 0}
-            />
+         <div className="relative aspect-[2/1] overflow-hidden bg-zinc-950">
+          <Image
+            src={project.image}
+            alt={`Logo de ${project.title}`}
+            width={project.imageWidth}
+            height={project.imageHeight}
+            className="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03]"
+            sizes="(max-width: 1152px) 100vw, 1152px"
+           priority={index === 0}
+           />
 
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
 
