@@ -9,6 +9,8 @@ export type Project = {
   category: string;
   technologies: string[];
   image: string;
+  imageWidth: number;
+  imageHeight: number;
   demo: string;
   github?: string;
   featured: boolean;
@@ -48,9 +50,10 @@ export const projects: Project[] = [
       "GSAP",
       "Lucide React",
     ],
-
     image: "/projects/decoandi-pag.png",
-
+    imageWidth: 1905,
+      imageHeight: 946,
+ 
     demo: "https://decoandi.vercel.app",
 
     featured: true,
@@ -107,7 +110,9 @@ export const projects: Project[] = [
       "Supabase Storage",
     ],
 
-    image: "/projects/trip-musica.png",
+       image: "/projects/trip-musica.png",
+    imageWidth: 1910,
+    imageHeight: 944,
 
     demo: "https://trip-musica.vercel.app",
 
@@ -165,6 +170,8 @@ export const projects: Project[] = [
     ],
 
     image: "/projects/maldito-cafe.png",
+    imageWidth: 1905,
+    imageHeight: 985,
 
     demo: "https://malditocafe.vercel.app",
 
