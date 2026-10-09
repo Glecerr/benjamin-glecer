@@ -49,7 +49,7 @@ export const projects: Project[] = [
       "Lucide React",
     ],
 
-    image: "/projects/logo%20decoandi.jpg",
+    image: "/projects/decoandi-pag.png",
 
     demo: "https://decoandi.vercel.app",
 
@@ -80,17 +80,17 @@ export const projects: Project[] = [
 
   {
     id: 2,
-    slug: "trip-music",
-    title: "Trip Music",
+    slug: "trip-musica",
+    title: "Trip Musica",
 
     description:
       "Aplicación web para publicar y administrar noticias, eventos y contenido multimedia relacionado con la cobertura de Trip Music.",
 
     longDescription:
-      "Desarrollé Trip Music pensando en una necesidad concreta: que el contenido de la página pueda gestionarse sin tener que modificar el código cada vez que aparece una nueva noticia o evento. La aplicación cuenta con una parte pública donde se muestran las publicaciones y un panel de administración desde el que se pueden crear y gestionar contenidos. Para la autenticación, base de datos y almacenamiento de archivos utilicé Supabase.",
+      "Desarrollé Trip Musica pensando en una necesidad concreta: que el contenido de la página pueda gestionarse sin tener que modificar el código cada vez que aparece una nueva noticia o evento. La aplicación cuenta con una parte pública donde se muestran las publicaciones y un panel de administración desde el que se pueden crear y gestionar contenidos. Para la autenticación, base de datos y almacenamiento de archivos utilicé Supabase.",
 
     context:
-      "El proyecto nació de la necesidad de que Trip Music pudiera publicar y administrar sus propias noticias, eventos y contenido multimedia sin depender de modificar el código cada vez que aparece una nueva publicación.",
+      "El proyecto nació de la necesidad de que Trip Musica pudiera publicar y administrar sus propias noticias, eventos y contenido multimedia sin depender de modificar el código cada vez que aparece una nueva publicación.",
 
     approach:
       "Construí una aplicación con una parte pública y un panel de administración, integrando autenticación, base de datos y almacenamiento mediante Supabase.",
@@ -107,7 +107,7 @@ export const projects: Project[] = [
       "Supabase Storage",
     ],
 
-    image: "/projects/logo%20trip.jpg",
+    image: "/projects/trip-musica.png",
 
     demo: "https://trip-musica.vercel.app",
 
@@ -164,7 +164,7 @@ export const projects: Project[] = [
       "Tailwind CSS",
     ],
 
-    image: "/projects/logo%20maldito.jpg",
+    image: "/projects/maldito-cafe.png",
 
     demo: "https://malditocafe.vercel.app",
 
