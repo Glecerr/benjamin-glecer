@@ -1,6 +1,7 @@
+
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const links = [
@@ -17,67 +18,73 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 30);
 
     handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [open]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
 
-    if (!element) {
-      console.error(`No se encontró la sección: #${id}`);
-      return;
-    }
+    if (!element) return;
 
     const headerOffset = 90;
-
     const elementPosition =
       element.getBoundingClientRect().top + window.scrollY;
 
     window.scrollTo({
       top: elementPosition - headerOffset,
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
     });
 
     setOpen(false);
-
     window.history.replaceState(null, "", `#${id}`);
   };
 
   return (
     <header
-      className={
-        "fixed left-0 top-0 z-50 w-full transition-all duration-500 " +
-        (scrolled
-          ? "border-b border-white/10 bg-black/80 backdrop-blur-2xl"
-          : "bg-transparent")
-      }
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "border-b border-white/10 bg-[#05070d]/90 shadow-lg shadow-black/10 backdrop-blur-xl"
+          : "bg-transparent"
+      }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <nav
+        aria-label="Navegación principal"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"
+      >
         <button
           type="button"
           onClick={() => scrollToSection("inicio")}
-          className="text-lg font-semibold tracking-tight"
+          aria-label="Benjamín Glecer, ir al inicio"
+          className="rounded-md text-lg font-semibold tracking-tight outline-none transition focus-visible:ring-2 focus-visible:ring-blue-400"
         >
-          BG<span className="text-lime-400">.</span>
+          BG<span className="text-blue-400">.</span>
         </button>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-7 lg:flex">
           {links.map((link) => (
             <button
               key={link.id}
               type="button"
               onClick={() => scrollToSection(link.id)}
-              className="text-sm text-zinc-500 transition hover:text-lime-400"
+              className="rounded-sm text-sm text-zinc-400 outline-none transition hover:text-blue-400 focus-visible:ring-2 focus-visible:ring-blue-400"
             >
               {link.name}
             </button>
@@ -86,36 +93,43 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => scrollToSection("contacto")}
-            className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-5 py-2.5 text-xs font-medium text-zinc-300 transition hover:border-lime-400/30 hover:bg-lime-400/[0.05] hover:text-white"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm text-zinc-200 outline-none transition hover:border-blue-400/40 hover:bg-blue-400/10 focus-visible:ring-2 focus-visible:ring-blue-400"
           >
             Hablemos
-
-            <span className="text-zinc-600 transition group-hover:text-lime-400">
-              ↗
-            </span>
+            <ArrowUpRight
+              size={15}
+              className="text-blue-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
           </button>
         </div>
 
         <button
           type="button"
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen((previous) => !previous)}
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
-          className="rounded-full border border-white/10 bg-white/[0.02] p-2 text-zinc-300 transition hover:border-lime-400/30 hover:text-lime-400 md:hidden"
+          aria-controls="mobile-navigation"
+          className="rounded-full border border-white/10 bg-white/[0.03] p-2.5 text-zinc-200 outline-none transition hover:border-blue-400/40 hover:text-blue-400 focus-visible:ring-2 focus-visible:ring-blue-400 lg:hidden"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-black/95 px-6 py-7 backdrop-blur-2xl md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1">
+        <div
+          id="mobile-navigation"
+          className="border-t border-white/10 bg-[#05070d]/95 px-6 py-5 backdrop-blur-xl lg:hidden"
+        >
+          <nav
+            aria-label="Navegación móvil"
+            className="mx-auto flex max-w-6xl flex-col gap-1"
+          >
             {links.map((link) => (
               <button
                 key={link.id}
                 type="button"
                 onClick={() => scrollToSection(link.id)}
-                className="border-b border-white/5 py-4 text-left text-base text-zinc-400 transition hover:text-lime-400"
+                className="rounded-md border-b border-white/5 py-4 text-left text-base text-zinc-300 outline-none transition hover:text-blue-400 focus-visible:ring-2 focus-visible:ring-blue-400"
               >
                 {link.name}
               </button>
@@ -124,11 +138,12 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => scrollToSection("contacto")}
-              className="mt-4 rounded-full bg-lime-400 px-5 py-3 text-center text-sm font-semibold text-black transition hover:bg-lime-300"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 px-5 py-3.5 text-sm font-semibold text-white outline-none transition hover:bg-blue-400 focus-visible:ring-2 focus-visible:ring-blue-300"
             >
               Hablemos
+              <ArrowUpRight size={16} />
             </button>
-          </div>
+          </nav>
         </div>
       )}
     </header>
