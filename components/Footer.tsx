@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-lg font-semibold tracking-tight">
-            BG<span className="text-lime-400">.</span>
+            BG<span className="text-blue-400">.</span>
           </p>
 
           <p className="mt-2 text-xs text-zinc-600">
@@ -17,21 +17,21 @@ export default function Footer() {
         <div className="flex flex-wrap items-center gap-6">
           <a
             href="#inicio"
-            className="text-xs text-zinc-600 transition hover:text-lime-400"
+            className="text-xs text-zinc-600 transition hover:text-blue-400"
           >
             Inicio
           </a>
 
           <a
             href="#proyectos"
-            className="text-xs text-zinc-600 transition hover:text-lime-400"
+            className="text-xs text-zinc-600 transition hover:text-blue-400"
           >
             Proyectos
           </a>
 
           <a
             href="#contacto"
-            className="group inline-flex items-center gap-1.5 text-xs text-zinc-600 transition hover:text-lime-400"
+            className="group inline-flex items-center gap-1.5 text-xs text-zinc-600 transition hover:text-blue-400"
           >
             Contacto
             <ArrowUpRight
