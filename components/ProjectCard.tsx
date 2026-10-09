@@ -47,8 +47,8 @@ export default function ProjectCard({
             <Image
               src={project.image}
               alt={`Logo de ${project.title}`}
-              width={1200}
-              height={700}
+              width={project.imageWidth}
+              height={project.imageHeight}
               className="h-auto max-h-[300px] w-full max-w-[1000px] object-contain transition duration-700 ease-out group-hover:scale-[1.025] md:max-h-[390px]"
               sizes="(max-width: 768px) calc(100vw - 64px), 1000px"
               priority={index === 0}
